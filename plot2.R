@@ -10,7 +10,7 @@ TIMEZONE <- "GMT" #Unknown - assuming GMT
 
 ## Support functions
 
-# Load data
+# Load data - Same as plot1 - included for to make independent
 load_plot_data <- function() {
     # Get column names
     shortread <- read.table(file=FILE_LOCAL,
@@ -38,17 +38,20 @@ load_plot_data <- function() {
     
     return(data)
 }
-    
-# Plot 1
-plot1 <- function() {
+
+# Plot 2
+plot2 <- function() {
     data <- load_plot_data()
     
-    png(filename="plot1.png") #Defaults should work
-    hist(data$Global_active_power,
-         col="red",
-         xlab="Global Active Power (kilowatts)",
-         main="Global Active Power")
+    png(filename="plot2.png") #Defaults should work
+    
+    plot(x=data$Time,
+         y=data$Global_active_power,
+         type="l",
+         xlab="",
+         ylab="Global Active Power (kilowatts)")
+    
     dev.off()
 }
 
-plot1()
+plot2()
