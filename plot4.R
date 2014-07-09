@@ -39,12 +39,24 @@ load_plot_data <- function() {
     return(data)
 }
 
-# Plot 3
-plot3 <- function() {
-    data <- load_plot_data()
-    
-    png(filename="plot3.png") #Defaults should work
-    
+# Plot 4
+plot4a <- function(data){
+    plot(x=data$Time,
+         y=data$Global_active_power,
+         type="l",
+         xlab="",
+         ylab="Global Active Power")
+}
+
+plot4b <- function(data){
+    plot(x=data$Time,
+         y=data$Voltage,
+         type="l",
+         xlab="datetime",
+         ylab="Voltage")
+}
+
+plot4c <- function(data){
     plot(x=data$Time,
          y=data$Sub_metering_1,
          type="l",
@@ -58,9 +70,30 @@ plot3 <- function() {
                       "Sub_metering_2", 
                       "Sub_metering_3"), 
            col=c("black","red","blue"), 
-           lty=1)
+           lty=1,
+           bty="n")
+}
+
+plot4d <- function(data){
+    plot(x=data$Time,
+         y=data$Global_reactive_power,
+         type="l",
+         xlab="datetime",
+         ylab="Global_reactive_power")
+}
+
+plot4 <- function() {
+    data <- load_plot_data()
+    
+    png(filename="plot4.png") #Defaults should work
+    
+    par(mfrow=c(2,2))
+    plot4a(data)
+    plot4b(data)
+    plot4c(data)
+    plot4d(data)
     
     dev.off()
 }
 
-plot3()
+plot4()
